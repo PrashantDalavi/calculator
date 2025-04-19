@@ -1,0 +1,11 @@
+<h1 class='page_header'> Calculator</h1>
+<%= form_with url: "/", method: :get, remote: true do |form| %>
+  <%= form.label :query, "Add:" %>
+  <%= form.text_field :query %>
+  <%= form.submit "Add" %>
+<% end %>
+
+<span class= align_together>
+<h3 class = normal_ans>Answer:</h3> 
+<h3 class="bold_ans"> </h3>
+</span>
