@@ -9,4 +9,11 @@ RSpec.describe 'Calculator Page', type: :feature do
     visit('/')
     expect(page).to have_content('Calculator')
   end
+
+  it 'inputs the data for addition' do
+    visit('/')
+    fill_in 'query', with: '12kewby45;5'
+    click_button('Add')
+    expect(page).to have_content('Answer:')
+  end
 end
