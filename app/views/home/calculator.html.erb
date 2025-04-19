@@ -1,11 +1,18 @@
 <h1 class='page_header'> Calculator</h1>
-<%= form_with url: "/calculator", method: :post, remote: true do |form| %>
+<%= form_with url: calculator_path, method: :post do |form| %>
   <%= form.label :query, "Add:" %>
   <%= form.text_field :query %>
   <%= form.submit "Add" %>
 <% end %>
+<% if params[:query].present? && @errors.present? %>
+  <span class="errors" style="color: red;">
+    <%= @errors %>
+  </span>
+<% end %>
 
-<span class= align_together style="display: none;">
-<h3 class = normal_ans>Answer:</h3> 
-<h3 class="bold_ans"> </h3>
-</span>
+<% if @added_numbers.present? %>
+  <span class="align_together">
+    <h3 class="normal_ans">Answer:</h3> 
+    <h3 class="bold_ans"><%= @added_numbers %></h3>
+  </span>
+<% end %>

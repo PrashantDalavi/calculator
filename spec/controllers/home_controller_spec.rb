@@ -14,10 +14,20 @@ RSpec.describe HomeController, type: :controller do
   end
 
   describe '#calculator1' do
+    subject {described_class.new}
     it 'it splits input parameters' do
-      get :calculator
-      input_string = 'dfa12mmnj45'.split('')
-      expect(input_string).to eq(["d", "f", "a", "1", "2", "m", "m", "n", "j", "4", "5"])
+      result = subject.send(:get_numbers, 'dfa12mmnj45')
+      expect(result).to eq([1,2,4,5])
+    end
+
+    it 'checks for negative numbers' do
+      result = subject.send(:check_for_neg_numbers, [3, 4, 5, 6, 8, 9, -9])
+      expect(result).to be_truthy
+    end
+
+    it 'checks for response when no negative no present' do
+      result = subject.send(:check_for_neg_numbers, [3, 4, 5, 6, 8, 9])
+      expect(result).to be_falsy
     end
   end
 end
