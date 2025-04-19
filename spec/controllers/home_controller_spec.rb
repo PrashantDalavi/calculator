@@ -9,11 +9,13 @@ RSpec.describe HomeController, type: :controller do
     end
   end
 
-  describe 'calculator method specs' do
-
+  describe 'response to calculator method' do
     it { is_expected.to respond_to(:calculator)}
-    
-    it 'splits the input string' do
+  end
+
+  describe '#calculator1' do
+    it 'it splits input parameters' do
+      get :calculator
       input_string = 'dfa12mmnj45'.split('')
       expect(input_string).to eq(["d", "f", "a", "1", "2", "m", "m", "n", "j", "4", "5"])
     end
