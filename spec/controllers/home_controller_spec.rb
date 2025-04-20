@@ -30,4 +30,17 @@ RSpec.describe HomeController, type: :controller do
       expect(result).to be_falsy
     end
   end
+
+  context 'when there are no negative numbers' do
+    before do
+      subject {described_class.new}
+      allow(controller).to receive(:get_numbers).and_return([1, 2, 3])
+      allow(controller).to receive(:check_for_neg_numbers).and_return(nil)
+      get :calculator1, params: { query: '1,2,3' }
+    end
+
+    it 'sets @added_numbers to the sum of numbers' do
+      expect(subject.instance_variable_get(:@added_numbers)).to eq(6)
+    end
+  end
 end
